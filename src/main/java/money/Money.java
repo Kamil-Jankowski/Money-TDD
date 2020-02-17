@@ -2,8 +2,8 @@ package money;
 
 public class Money implements Expression {
 
-    private int amount;
-    private String currency;
+    int amount;
+    String currency;
 
     Money(int amount, String currency) {
         this.amount = amount;
@@ -33,12 +33,17 @@ public class Money implements Expression {
         return currency;
     }
 
+    public Expression plus(Money addend) {
+        return new Sum(this, addend);
+    }
+
     @Override
     public String toString() {
         return amount + " " + currency;
     }
 
-    public Expression plus(Money addend) {
-        return new Money(this.amount + addend.amount, this.currency);
+    @Override
+    public Money reduce(String to) {
+        return this;
     }
 }
