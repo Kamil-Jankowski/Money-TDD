@@ -25,7 +25,8 @@ public class Money implements Expression {
                 && this.currency().equals(money.currency());
     }
 
-    Money times(int multiplier) {
+    @Override
+    public Expression times(int multiplier) {
         return new Money(amount * multiplier, currency);
     }
 
@@ -33,7 +34,8 @@ public class Money implements Expression {
         return currency;
     }
 
-    public Expression plus(Money addend) {
+    @Override
+    public Expression plus(Expression addend) {
         return new Sum(this, addend);
     }
 
